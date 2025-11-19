@@ -1,4 +1,3 @@
-
 def sumar(num1, num2):
     """
     Devuelve la suma de num1 y num2.
@@ -22,14 +21,19 @@ def cuenta_caracteres(cadena):
     Devuelve el número de caracteres de la cadena `cadena`.
     Lanza TypeError si `cadena` no es de tipo str.
     """
-    return 0
+    if not isinstance(cadena, str):
+        raise TypeError("Cadena debe ser un string")
+    return len(cadena)
+
 
 def obtener_secreto(d):
     """
     Devuelve el valor de la clave `secreto` en el diccionario `d`.
     Lanza TypeError si `d` no es dict y KeyError si `secreto` no existe.
     """
+
     return 0
+
 
 def get_cuota(cuota_mensual, años_fidelidad):
     """
@@ -44,6 +48,7 @@ def get_cuota(cuota_mensual, años_fidelidad):
     Lanza ValueError si alguno de los valores es negativo.
     """
     return 0
+
 
 if __name__ == "__main__":
     print("Let's go con ese Python!")
