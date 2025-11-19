@@ -3,7 +3,7 @@ def sumar(num1, num2):
     """
     Devuelve la suma de num1 y num2.
     """
-    return 0
+    return num1 + num2
 
 
 def checkLista(lista):
@@ -11,7 +11,10 @@ def checkLista(lista):
     Devuelve True si hay al menos un número entero par en `lista`.
     Se ignoran elementos que no sean de tipo int.
     """
-    return 0
+    for item in lista:
+        if isinstance(item, int) and (item % 2 == 0):
+            return True
+    return False
 
 
 def cuenta_caracteres(cadena):
