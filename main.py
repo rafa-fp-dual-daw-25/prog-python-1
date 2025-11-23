@@ -22,7 +22,7 @@ def cuenta_caracteres(cadena):
     Lanza TypeError si `cadena` no es de tipo str.
     """
     if not isinstance(cadena, str):
-        raise TypeError("Cadena debe ser un string")
+        raise TypeError("Cadena debe ser tipo string")
     return len(cadena)
 
 
@@ -31,8 +31,13 @@ def obtener_secreto(d):
     Devuelve el valor de la clave `secreto` en el diccionario `d`.
     Lanza TypeError si `d` no es dict y KeyError si `secreto` no existe.
     """
+    if not isinstance(d, dict):
+        raise KeyError("El parámetro 'd' debe ser un diccionario")
 
-    return 0
+    try:
+        return d['secreto']
+    except KeyError:
+        raise KeyError("La clave 'secreto' no existe")
 
 
 def get_cuota(cuota_mensual, años_fidelidad):
@@ -47,7 +52,23 @@ def get_cuota(cuota_mensual, años_fidelidad):
     Lanza TypeError si los argumentos no son numéricos.
     Lanza ValueError si alguno de los valores es negativo.
     """
-    return 0
+    # Verificar tipos
+    if not (isinstance(cuota_mensual, (int, float)) and isinstance(años_fidelidad, (int, float))):
+        raise TypeError("Ambos parámetros deben ser numéricos")
+
+    # Verificar valores no negativos
+    if cuota_mensual < 0 or años_fidelidad < 0:
+        raise ValueError("Los valores no pueden ser negativos")
+
+    # Aplicar descuentos según años de fidelidad
+    if años_fidelidad > 10:
+        return cuota_mensual * 0.80  # 20% descuento
+    elif años_fidelidad > 5:
+        return cuota_mensual * 0.90  # 10% descuento
+    elif años_fidelidad > 3:
+        return cuota_mensual * 0.95  # 5% descuento
+    else:
+        return cuota_mensual  # 0% descuento
 
 
 if __name__ == "__main__":
